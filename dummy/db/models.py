@@ -13,6 +13,7 @@ class Dummy(models.Model):
     class Meta:
         verbose_name = "Dummy"
         verbose_name_plural = "Dummies"
+        db_table = "dummy"
 
     def __str__(self):
         return self.name
