@@ -5,7 +5,7 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
-from application.customer.interfaces import router as customer_router
+from application.customer.routes import router as customer_router
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -18,8 +18,10 @@ urlpatterns += [
 urlpatterns += [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "api/schema/swagger/",
-        SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger",
+        "api/docs/",
+        SpectacularSwaggerView.as_view(
+            template_name="swagger-ui.html", url_name="schema"
+        ),
+        name="swagger-ui",
     ),
 ]

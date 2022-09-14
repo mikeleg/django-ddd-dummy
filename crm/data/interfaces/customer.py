@@ -1,11 +1,19 @@
-from typing import Protocol
-
+from typing import Optional, Protocol
 from domain.entities.customer import Customer
 
 
 class ICustomerRepository(Protocol):
-    def retrieve_all_customers(self) -> list[Customer]:
+    def all(self) -> list[Customer]:
         ...
 
-    def retrive_customer(self, customer_id) -> Customer:
+    def get_by_id(self, customer_id) -> Optional[Customer]:
+        ...
+
+    def add(self, customer) -> Customer:
+        ...
+
+    def update(self, customer) -> Customer:
+        ...
+
+    def delete(self, customer_id) -> None:
         ...
