@@ -1,9 +1,26 @@
-from typing import Optional
+from typing import Optional, Protocol
 from data.repositories.customer import CustomerRepository
 from domain.entities.customer import Customer
 
 
-class CustomerService:
+class ICustomerService(Protocol):
+    def all(self) -> list[Customer]:
+        ...
+
+    def detail(self, customer_id: int) -> Optional[Customer]:
+        ...
+
+    def add(self, customer: Customer) -> Customer:
+        ...
+
+    def update(self, customer: Customer) -> Customer:
+        ...
+
+    def delete(self, customer_id) -> None:
+        ...
+
+
+class CustomerService(ICustomerService):
     def __init__(self, repo: CustomerRepository) -> None:
         self.repo = repo
 

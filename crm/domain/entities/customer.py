@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing_extensions import Self
 
 
 @dataclass
@@ -9,7 +10,8 @@ class Customer:
     phone = str
     email = str
 
-    def convert_into_domain(self, dto: dict):
+    def convert_into_domain(self, dto: dict) -> Self:
+
         self.id = dto.get("id")
         self.name = dto.get("name")
         self.surname = dto.get("surname")
@@ -25,7 +27,7 @@ class Note:
     customer_id = int
     note = str
 
-    def convert_into_domain(self, dto: dict):
+    def convert_into_domain(self, dto: dict) -> Self:
         self.id = dto.get("id")
         self.customer_id = dto.get("customer_id")
         self.note = dto.get("note")
