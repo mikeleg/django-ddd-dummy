@@ -9,25 +9,20 @@ class CustomerRepository(ICustomerRepository):
     def all(self) -> list[Customer]:
         customers = CustomerModel.objects.all()
 
-        if len(customers) == 0:
+        if not customers.exists():
             return []
 
-        return list(
-            [
-                Customer().convert_into_domain(customer.__dict__)
-                for customer in customers
-            ]
-        )
+        return [
+            Customer().convert_into_domain(customer.__dict__) for customer in customers
+        ]
 
     def get_by_id(self, customer_id: int) -> Optional[Customer]:
-        result: Customer = None
-        try:
-            customer = CustomerModel.objects.get(id=customer_id)
-            result = Customer().convert_into_domain(customer.__dict__)
-        except ObjectDoesNotExist:
-            ...
+        customer = CustomerModel.objects.filter(id=customer_id)
 
-        return result
+        if not customer.exists():
+            return None
+
+        return Customer().convert_into_domain(customer.__dict__)
 
     def add(self, customer: Customer) -> Customer:
         new_db_customer = CustomerModel(**customer.__dict__)

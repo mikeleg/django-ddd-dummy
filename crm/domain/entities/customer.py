@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from dataclasses import dataclass
-from datetime import datetime
 
 
 @dataclass
@@ -11,11 +9,25 @@ class Customer:
     phone = str
     email = str
 
-    def convert_into_domain(self, dto):
-        self.id = dto["id"] if "id" in dto else None
-        self.name = dto["name"] if "name" in dto else None
-        self.surname = dto["surname"] if "surname" in dto else None
-        self.phone = dto["phone"] if "phone" in dto else None
-        self.email = dto["email"] if "email" in dto else None
+    def convert_into_domain(self, dto: dict):
+        self.id = dto.get("id")
+        self.name = dto.get("name")
+        self.surname = dto.get("surname")
+        self.phone = dto.get("phone")
+        self.email = dto.get("email")
+
+        return self
+
+
+@dataclass
+class Note:
+    id = int
+    customer_id = int
+    note = str
+
+    def convert_into_domain(self, dto: dict):
+        self.id = dto.get("id")
+        self.customer_id = dto.get("customer_id")
+        self.note = dto.get("note")
 
         return self
