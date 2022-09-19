@@ -1,6 +1,6 @@
 from typing import Optional, Protocol
 from data.repositories.customer import CustomerRepository
-from domain.entities.customer import Customer
+from core.domain.entities.customer import Customer
 
 
 class ICustomerService(Protocol):
