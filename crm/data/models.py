@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class CustomerModel(models.Model):
+class Customer(models.Model):
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
     phone = models.CharField(max_length=40)
