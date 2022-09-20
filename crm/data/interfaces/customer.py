@@ -1,5 +1,5 @@
 from typing import Optional, Protocol
-from domain.entities.customer import Customer
+from core.domain.entities.customer import Customer
 
 
 class ICustomerRepository(Protocol):
